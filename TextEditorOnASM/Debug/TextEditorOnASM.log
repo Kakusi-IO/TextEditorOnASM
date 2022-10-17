@@ -1,0 +1,3 @@
+﻿  Assembling Source.asm...
+Source.asm(213): warning A6004: procedure argument or local not referenced : lParam
+  TextEditorOnASM.vcxproj -> D:\Code\TextEditorOnASM\Debug\TextEditorOnASM.exe
