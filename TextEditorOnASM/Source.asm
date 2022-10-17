@@ -147,38 +147,6 @@ WndProc PROC uses EBX ESI EDI windowHandle:DWORD, uMsg:DWORD, wParam:DWORD, lPar
 			jmp	konWNDPROC
 		.ENDIF
 
-	
-		.IF wParam ==  103 ;open             
-		otworz:
-
-			INVOKE SetDlgItemTextA, windowHandle, 4, offset buffor1	
-
-			mov ECX, 255
-			mov ESI , OFFSET buffor22
-			mov EDI, OFFSET buffor11
-			 rep movsb
-
-			mov ECX, 4000
-			mov ESI , OFFSET bufferToClear
-			mov EDI, OFFSET buffer
-			 rep movsb
-
-			INVOKE lstrcatA , OFFSET buffor11, OFFSET path
-			INVOKE SendDlgItemMessageA , windowHandle , 2 , WM_GETTEXT ,32, offset buffor 
-			INVOKE lstrcatA , OFFSET buffor11, OFFSET buffor
-			INVOKE lstrcatA , OFFSET buffor11, OFFSET koncowka
-
-		
-		INVOKE CreateFileA,OFFSET buffor11,GENERIC_WRITE or GENERIC_READ,0,0,OPEN_EXISTING,0,0
-		mov fileHandel,EAX ;file handle
-		INVOKE ReadFile,fileHandel, OFFSET dataToRead, 4000,OFFSET dataRad,0
-
-		INVOKE SendDlgItemMessageA , windowHandle , 4 , WM_SETTEXT , 4000 , offset dataToRead
-		INVOKE SendDlgItemMessageA , windowHandle , 1 , WM_SETTEXT , 4000 , offset dataToRead
-
-			mov EAX, 1
-			jmp	konWNDPROC
-		.ENDIF
 
 				;clean
 			.IF wParam ==  105 ;

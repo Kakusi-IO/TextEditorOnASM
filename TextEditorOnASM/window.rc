@@ -44,7 +44,6 @@ MENU1 MENU
 {
 	MENUITEM "new", 101
 		MENUITEM "save", 102
-		MENUITEM "open file as filename...", 103
 		MENUITEM "close", 104
 }
 POPUP "edition"
