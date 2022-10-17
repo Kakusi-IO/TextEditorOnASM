@@ -46,10 +46,5 @@ MENU1 MENU
 		MENUITEM "save", 102
 		MENUITEM "close", 104
 }
-POPUP "edition"
-{
-	MENUITEM "clear", 105
-
-}
 
 }

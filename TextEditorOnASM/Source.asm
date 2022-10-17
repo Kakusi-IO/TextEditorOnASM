@@ -142,18 +142,9 @@ WndProc PROC uses EBX ESI EDI windowHandle:DWORD, uMsg:DWORD, wParam:DWORD, lPar
 		
 			mov EAX, 1
 
-			jmp otworz
-
 			jmp	konWNDPROC
 		.ENDIF
 
-
-				;clean
-			.IF wParam ==  105 ;
-				INVOKE SetDlgItemTextA, windowHandle, 1, offset buffor1	
-			mov EAX, 1
-			jmp	konWNDPROC
-			.ENDIF
 		.IF wParam ==  101 
 			INVOKE SetDlgItemTextA, windowHandle, 2, offset nazwa
 			INVOKE SetDlgItemTextA, windowHandle, 1, offset buffor1	
