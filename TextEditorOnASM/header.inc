@@ -1,5 +1,5 @@
-;Plik nag��wkowy grafika.inc dla aplikacji graficznych MASM32
-;--- komunikaty ---
+;Graphics.inc header file for MASM32 graphics applications
+;--- messages ---
 WM_DESTROY	                         equ 02h
 WM_PAINT                             equ 0Fh
 WM_CLOSE                             equ 10h
@@ -128,7 +128,7 @@ BM_SETSTYLE                          equ 0F4h
 BM_CLICK                             equ 0F5h
 BM_GETIMAGE                          equ 0F6h
 BM_SETIMAGE                          equ 0F7h
-;--- w�a�ciwo�ci ---
+;--- properties ---
 BS_PUSHBUTTON                        equ 0h
 BS_DEFPUSHBUTTON                     equ 1h
 BS_CHECKBOX                          equ 2h
@@ -444,7 +444,7 @@ MB_TOPMOST                  		  equ 40000h
 MB_RIGHT                    		  equ 80000h
 MB_RTLREADING               		  equ 100000h
 MB_SERVICE_NOTIFICATION          	  equ 200000h
-;--- identyfikatory ---
+;--- identifiers ---
 IDI_APPLICATION	EQU	32512
 IDC_ARROW equ 32512
 IDC_IBEAM equ 32513
@@ -644,64 +644,31 @@ ShowWindow PROTO :DWORD,:DWORD
 TranslateMessage PROTO :DWORD
 UpdateWindow PROTO :DWORD
 wsprintfA PROTO C lpOut:DWORD, lpFmt:DWORD, arg:VARARG
-     ;; int wsprintf(LPTSTR lpOut,// pointer to buffer for output 
-     ;; LPCTSTR lpFmt,// pointer to format-control string 
-     ;;    ...	// optional arguments  );
+
 lstrlenA PROTO lpString:DWORD
-    ;;int lstrlen(
-    ;;LPCTSTR lpString 	// address of string to count  );     
-;--- funkcje API Win32 z pliku  gdi32.inc ---
+
 GetStockObject PROTO :DWORD
 TextOutA PROTO hdc:DWORD, nXStart:DWORD,	nYStart: DWORD, lpString:DWORD, cbString:DWORD 
-    ;;BOOL TextOut(
-    ;;HDC hdc,	// handle of device context 
-    ;;int nXStart,	// x-coordinate of starting position  
-    ;;int nYStart,	// y-coordinate of starting position  
-    ;;LPCTSTR lpString,	// address of string 
-    ;;int cbString 	// number of characters in string  );
+
 GetDC PROTO hWnd:DWORD
-    ;HDC GetDC(
-    ;;HWND hWnd 	// handle of window  );
+
 ReleaseDC PROTO hWnd:DWORD, hDC:DWORD	
-    ;;int ReleaseDC(
-    ;;HWND hWnd,	// handle of window 
-    ;;HDC hDC 	// handle of device context  );	
+
 CreatePen PROTO fnPenStyle:DWORD, nWidth:DWORD,crColor:DWORD	
-      ;;HPEN CreatePen(
-      ;;    int fnPenStyle,	// pen style 
-      ;;    int nWidth,	// pen width  
-      ;;    COLORREF crColor 	// pen color );     	
+   	
 SelectObject PROTO hDC:DWORD, hgdiobj:DWORD	
-      ;;HGDIOBJ SelectObject(
-      ;;    HDC hdc,	// handle of device context 
-      ;;    HGDIOBJ hgdiobj 	// handle of object  );
+
 DeleteObject PROTO hgdiobj:DWORD
-      ;;BOOL DeleteObject(
-      ;;   HGDIOBJ hObject 	// handle to graphic object  );
+
 Rectangle PROTO hdc:DWORD,nLeftRect:DWORD,nTopRect:DWORD,nRightRect:DWORD,nBottomRect:DWORD
-      ;;BOOL Rectangle(
-      ;;    HDC hdc,	// handle of device context 
-      ;;    int nLeftRect,	// x-coord. of bounding rectangle's upper-left corner 
-      ;;    int nTopRect,	// y-coord. of bounding rectangle's upper-left corner 
-      ;;    int nRightRect,	// x-coord. of bounding rectangle's lower-right corner  
-      ;;    int nBottomRect 	// y-coord. of bounding rectangle's lower-right corner  );
+
 CreateSolidBrush PROTO crColor:DWORD
-      ;;HBRUSH CreateSolidBrush(
-      ;;    COLORREF crColor 	// brush color value  );
+
 FillRect PROTO hdc:DWORD,lpRECT:DWORD,hbr:DWORD
-      ;;int FillRect(
-      ;;    HDC hDC,	// handle to device context 
-      ;;    CONST RECT *lprc,	// pointer to structure with rectangle  
-      ;;    HBRUSH hbr 	// handle to brush );      
+   
 SendMessageA PROTO hwnd:DWORD,msg:DWORD,wParam:DWORD,lParam:DWORD
-      ;;LRESULT SendMessage(
-      ;;    HWND hWnd,	// handle of destination window
-      ;;    UINT Msg,	// message to send
-      ;;    WPARAM wParam,	// first message parameter
-      ;;    LPARAM lParam 	// second message parameter  );     
+
 SetFocus PROTO hWnd:DWORD
-      ;;HWND SetFocus(
-      ;;    HWND hWnd 	// handle of window to receive focus );
 CreateDialogIndirectParamA PROTO :DWORD,:DWORD,:DWORD,:DWORD,:DWORD
 CreateDialogIndirectParam equ <CreateDialogIndirectParamA>
 CreateDialogIndirectParamW PROTO :DWORD,:DWORD,:DWORD,:DWORD,:DWORD

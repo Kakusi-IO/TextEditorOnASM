@@ -90,7 +90,6 @@ WndProc PROC uses EBX ESI EDI windowHandle:DWORD, uMsg:DWORD, wParam:DWORD, lPar
 		INVOKE LoadIcon , hinst, 11 
 	mov hicon,EAX
 	INVOKE SendMessageA , windowHandle , WM_SETICON ,ICON_SMALL , hicon 
-		;zmodyfikuj ikone aplikacji tutaj  zad 4
 
 		INVOKE LoadCursorA,hinst,12
 		mov hcur,EAX
@@ -113,7 +112,7 @@ WndProc PROC uses EBX ESI EDI windowHandle:DWORD, uMsg:DWORD, wParam:DWORD, lPar
 
 	wmCOMMAND: 
 
-	 .IF wParam ==  102 ;zapisz
+	 .IF wParam ==  102 ;save
 		
 			mov ECX, 32
 			mov ESI , OFFSET buffor22
@@ -137,7 +136,7 @@ WndProc PROC uses EBX ESI EDI windowHandle:DWORD, uMsg:DWORD, wParam:DWORD, lPar
 		mov fileHandel,EAX
 		INVOKE SendDlgItemMessageA , windowHandle , 1 , WM_GETTEXT ,4000, offset buffer 
 
-		INVOKE WriteFile,fileHandel, OFFSET buffer, 4000 ,OFFSET dataWritten,0 ;4 bo bajt po bajcie
+		INVOKE WriteFile,fileHandel, OFFSET buffer, 4000 ,OFFSET dataWritten,0 ;4 because byte by byte
 		INVOKE CloseHandle , fileHandel
 
 		
@@ -149,7 +148,7 @@ WndProc PROC uses EBX ESI EDI windowHandle:DWORD, uMsg:DWORD, wParam:DWORD, lPar
 		.ENDIF
 
 	
-		.IF wParam ==  103 ;otworz             
+		.IF wParam ==  103 ;open             
 		otworz:
 
 			INVOKE SetDlgItemTextA, windowHandle, 4, offset buffor1	
@@ -171,7 +170,7 @@ WndProc PROC uses EBX ESI EDI windowHandle:DWORD, uMsg:DWORD, wParam:DWORD, lPar
 
 		
 		INVOKE CreateFileA,OFFSET buffor11,GENERIC_WRITE or GENERIC_READ,0,0,OPEN_EXISTING,0,0
-		mov fileHandel,EAX ;UCHWYT DO PLIKU
+		mov fileHandel,EAX ;file handle
 		INVOKE ReadFile,fileHandel, OFFSET dataToRead, 4000,OFFSET dataRad,0
 
 		INVOKE SendDlgItemMessageA , windowHandle , 4 , WM_SETTEXT , 4000 , offset dataToRead
@@ -181,7 +180,7 @@ WndProc PROC uses EBX ESI EDI windowHandle:DWORD, uMsg:DWORD, wParam:DWORD, lPar
 			jmp	konWNDPROC
 		.ENDIF
 
-				;WYCZYSC
+				;clean
 			.IF wParam ==  105 ;
 				INVOKE SetDlgItemTextA, windowHandle, 1, offset buffor1	
 			mov EAX, 1
@@ -196,7 +195,7 @@ WndProc PROC uses EBX ESI EDI windowHandle:DWORD, uMsg:DWORD, wParam:DWORD, lPar
 
 		
 
-		;;zamykanie:
+		;;close:
 		.IF wParam ==  104
 		INVOKE DestroyMenu,hmenu
 		INVOKE EndDialog, windowHandle, 0	

@@ -20,8 +20,6 @@
 #define SS_ENHMETAFILE 0Fh
 
 //--------------------------------
-#define STR1 1  
-#define STR2 2  
 
 
 DLG1 DIALOG 0, 0, 880, 380
@@ -38,11 +36,6 @@ FONT 10, "Arial"
 		CONTROL "", 4, "STATIC", ES_LEFT | WS_CHILD | WS_VISIBLE | WS_BORDER | WS_TABSTOP | SS_ENHMETAFILE, 441, 10, 430, 380
 
 
-}
-STRINGTABLE
-{
-	STR1 "Announcement"
-	STR2 "B彻d!"
 }
 
 MENU1 MENU
